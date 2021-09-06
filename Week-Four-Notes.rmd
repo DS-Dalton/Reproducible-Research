@@ -51,5 +51,4 @@ The National Morbidity, Mortality, and Air Pollution Study (NMMAPS) was a nation
 
 # Case Study: High Throughput Biology  
 
-
-  
+This was a lecture given by a cancer research regarding reproducibility. The case involved generating a genomic signature that would indicate sensitivity to some chemotherapy drugs. Many errors were made including off-by-one indexing errors and switching of labels. It was a mess. Using Sweave and the general doctrine of reproducibility prevents these simple errors from slipping through the cracks.  
