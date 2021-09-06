@@ -9,3 +9,47 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Literate Statistical Programming
+
+Literate programs can be weaves to produce human readable documents and tangles to produce machine readable documents.  
+Sweave is an R package which uses Latex and R to create these kinds of documents.  
+Authors start with data and perform analysis yielding an article with figures and tables. The reader works backwards, consuming the figures and tables and trying to reproduce the results by getting to the raw data.  
+The idea behind caching computations, is for the author to store their analysis in such a way that it is easily reproducible via the cached computation.  
+Store the results of the code in a database and publish the database for consumption by the reader.  
+The cacher package for R can accomplish this.  
+
+Using cacher as an Author:  
+  - the cachepackage function creates a cacher package storing the source file, cached data objects, and metadata.  
+  - Package file is zipped and can be distributed.  
+  - Readers can unzip the file and investigte the contents via the cacher package.  
+Using cacher as the reader:  
+  - Use clonecache(id="first four letters of Sha1 hash")  
+  - showfiles() lists the files in the package which yu cna then use as arguments to sourcefile() to source.  
+Tracing code backwards:  
+  - objectcode('data') lists how the data object was created  
+  - runcode() function runs the code, but loads results from the daabase, not the actual computations.  
+    - You *can* force the code to be run from scratch if you want.  
+      - checkcode()  
+      - Results of the evaluation are checked against the result stored in the database  
+  - loadcache() loads the objects in the database, use ls() to list the objects.  
+
+# Case Study: Air Pollution 
+
+Particulate Matter is studied because the dust that is released into the air is not wholly harmful to human health. It is made up of many different chemical constituents. If you could isolate each constituent and evaluate its effect on human health, you could target industrial regulations to improve health without unnecessarily regulating emissions that *are not* harmful.  
+
+## NMMAPS
+
+The National Morbidity, Mortality, and Air Pollution Study (NMMAPS) was a national study of the short-term health effects of ambient air pollution.  
+  - Focused on PM10 (particulate matter) and Ozone (03)  
+  - One of the most reproducible air studies ever conducted.  
+  - www.ihapss.jhsph.edu  
+  - One such study conducted on this public data found that nickel causes cardiovascular damage when emitted into the air in 60 US communities.  
+    - Another study evaluated this result. While there does appear to be a correlation between long-term nickel exposure and mortality, NYC was an outlier. If you remove NYC from the data, the correlation is no longer statistically significant.
+    - The result and conclusions of the original study were highly dependent on the 3 data points from NYC.  
+    - Perhaps the conclusions were not as strong as previously believed.  
+  - The reproducibility of the original NMMAPS study, allowed for the critique of the analysis and additional information was brought to light.  
+
+# Case Study: High Throughput Biology  
+
+
+  
